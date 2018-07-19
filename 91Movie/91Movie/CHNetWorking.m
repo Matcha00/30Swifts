@@ -89,8 +89,17 @@ static dispatch_once_t onceToken;
         
         //4.解析拿到的响应数据
         //NSLog(@"%@\n%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding],res.allHeaderFields);
+        NSString *dataString = [[NSString alloc]initWithData:[self replaceNoUtf8:data] encoding:NSUTF8StringEncoding];
         
-        block(data,nil);
+        NSData *dataBlock =[dataString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if (dataBlock) {
+            block(dataBlock,nil);
+        } else {
+            block(nil,error);
+        }
+        
+        
     }];
     
      //NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -106,5 +115,67 @@ static dispatch_once_t onceToken;
     
     
 }
+//去除data中非utf-8
 
+- (NSData *)replaceNoUtf8:(NSData *)data
+{
+    char aa[] = {'A','A','A','A','A','A'};                      //utf8最多6个字符，当前方法未使用
+    NSMutableData *md = [NSMutableData dataWithData:data];
+    int loc = 0;
+    while(loc < [md length])
+    {
+        char buffer;
+        [md getBytes:&buffer range:NSMakeRange(loc, 1)];
+        if((buffer & 0x80) == 0)
+        {
+            loc++;
+            continue;
+        }
+        else if((buffer & 0xE0) == 0xC0)
+        {
+            loc++;
+            [md getBytes:&buffer range:NSMakeRange(loc, 1)];
+            if((buffer & 0xC0) == 0x80)
+            {
+                loc++;
+                continue;
+            }
+            loc--;
+            //非法字符，将这个字符（一个byte）替换为A
+            [md replaceBytesInRange:NSMakeRange(loc, 1) withBytes:aa length:1];
+            loc++;
+            continue;
+        }
+        else if((buffer & 0xF0) == 0xE0)
+        {
+            loc++;
+            [md getBytes:&buffer range:NSMakeRange(loc, 1)];
+            if((buffer & 0xC0) == 0x80)
+            {
+                loc++;
+                [md getBytes:&buffer range:NSMakeRange(loc, 1)];
+                if((buffer & 0xC0) == 0x80)
+                {
+                    loc++;
+                    continue;
+                }
+                loc--;
+            }
+            loc--;
+            //非法字符，将这个字符（一个byte）替换为A
+            [md replaceBytesInRange:NSMakeRange(loc, 1) withBytes:aa length:1];
+            loc++;
+            continue;
+        }
+        else
+        {
+            //非法字符，将这个字符（一个byte）替换为A
+            [md replaceBytesInRange:NSMakeRange(loc, 1) withBytes:aa length:1];
+            loc++;
+            continue;
+        }
+    }
+    
+    return md;
+}
 @end

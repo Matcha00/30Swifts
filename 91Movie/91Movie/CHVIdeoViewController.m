@@ -25,8 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    CHPronVideoView *pronVideo = [[CHPronVideoView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, 200)];
-     [self.view addSubview:pronVideo];
+    
     //NSLog(@"%@",self.pron.showUrl);
     //*[@id="vid_html5_api"]/source
     
@@ -54,8 +53,10 @@
             if (hhhhh) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    
+                    CHPronVideoView *pronVideo = [[CHPronVideoView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, 200)];
                     pronVideo.urlVideo = hhhhh;
+                    [self.view addSubview:pronVideo];
+                    
                    
                     
                 });
