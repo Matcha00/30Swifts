@@ -25,6 +25,7 @@
 		18F009AE20673FE900283282 /* _1MovieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F009AD20673FE900283282 /* _1MovieTests.m */; };
 		18F009B920673FE900283282 /* _1MovieUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F009B820673FE900283282 /* _1MovieUITests.m */; };
 		689A651E0B56377AE232804F /* libPods-91Movie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEFDD1EBE3C260A52FE2F35 /* libPods-91Movie.a */; };
+		7C8AF2DB21018B14002D5D84 /* CHNavigationDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AF2DA21018B14002D5D84 /* CHNavigationDropdownMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		18F009B820673FE900283282 /* _1MovieUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _1MovieUITests.m; sourceTree = "<group>"; };
 		18F009BA20673FE900283282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71E2ADE21747B5048DEBF6BF /* Pods-91Movie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-91Movie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-91Movie/Pods-91Movie.debug.xcconfig"; sourceTree = "<group>"; };
+		7C8AF2D921018B14002D5D84 /* CHNavigationDropdownMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHNavigationDropdownMenu.h; sourceTree = "<group>"; };
+		7C8AF2DA21018B14002D5D84 /* CHNavigationDropdownMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHNavigationDropdownMenu.m; sourceTree = "<group>"; };
 		979C398D266FEADE3D6CAACB /* Pods-91Movie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-91Movie.release.xcconfig"; path = "Pods/Target Support Files/Pods-91Movie/Pods-91Movie.release.xcconfig"; sourceTree = "<group>"; };
 		DCC0BAE2474BBBA816FB0EEA /* Pods-91Movie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-91Movie.release.xcconfig"; path = "Pods/Target Support Files/Pods-91Movie/Pods-91Movie.release.xcconfig"; sourceTree = "<group>"; };
 		FB48C0723747F8DE4C5C22CF /* Pods-91Movie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-91Movie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-91Movie/Pods-91Movie.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				18042A852067F2CC00A2DAC9 /* CHVIdeoViewController.xib */,
 				18024BF9206F5E2400304F51 /* CHPronVideoView.h */,
 				18024BFA206F5E2400304F51 /* CHPronVideoView.m */,
+				7C8AF2D921018B14002D5D84 /* CHNavigationDropdownMenu.h */,
+				7C8AF2DA21018B14002D5D84 /* CHNavigationDropdownMenu.m */,
 			);
 			path = 91Movie;
 			sourceTree = "<group>";
@@ -285,7 +290,7 @@
 				TargetAttributes = {
 					18F0098C20673FE900283282 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 9UYJE5TN25;
+						DevelopmentTeam = H4Y4W32V96;
 						ProvisioningStyle = Automatic;
 					};
 					18F009A820673FE900283282 = {
@@ -412,6 +417,7 @@
 				18F0099820673FE900283282 /* ViewController.m in Sources */,
 				18F0099520673FE900283282 /* AppDelegate.m in Sources */,
 				18042A7A2067846600A2DAC9 /* CHNetWorking.m in Sources */,
+				7C8AF2DB21018B14002D5D84 /* CHNavigationDropdownMenu.m in Sources */,
 				18F0099220673FE900283282 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,7 +568,7 @@
 			baseConfigurationReference = FB48C0723747F8DE4C5C22CF /* Pods-91Movie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9UYJE5TN25;
+				DEVELOPMENT_TEAM = H4Y4W32V96;
 				INFOPLIST_FILE = 91Movie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "matcha00.me.-1Movie";
@@ -575,7 +581,7 @@
 			baseConfigurationReference = DCC0BAE2474BBBA816FB0EEA /* Pods-91Movie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9UYJE5TN25;
+				DEVELOPMENT_TEAM = H4Y4W32V96;
 				INFOPLIST_FILE = 91Movie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "matcha00.me.-1Movie";

@@ -14,8 +14,8 @@
 #import "CHPronModel.h"
 #import "CHVIdeoViewController.h"
 #import <MJRefresh.h>
-#import <Ono.h>
-@interface ViewController () <UITableViewDelegate,UITableViewDataSource>
+#import "CHNavigationDropdownMenu.h"
+@interface ViewController () <UITableViewDelegate,UITableViewDataSource,CHNavigationDropdownMenuDelegate,CHNavigationDropdownMenuDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *chTableview;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, strong) NSMutableArray *array;
@@ -31,11 +31,34 @@
     
     self.page = 1;
     
-    
+    CHNavigationDropdownMenu *test = [[CHNavigationDropdownMenu alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [self.view addSubview:test];
+    test.delegate = self;
+    test.dataSource = self;
 }
 
+#pragma mark - NavigationDropdownMenu DataSource
 
+- (NSArray<NSString *> *)titleArrayForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
+    return @[@"所有", @"大胸", @"翘臀", @"黑丝", @"美腿", @"清新", @"杂烩"];
+}
 
+- (UIImage *)arrowImageForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
+    return [UIImage imageNamed:@"Arrow"];
+}
+
+- (CGFloat)arrowPaddingForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
+    return 8.0;
+}
+
+- (BOOL)keepCellSelectionForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
+    return NO;
+}
+#pragma mark - NavigationDropdownMenu Delegate
+
+- (void)navigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu didSelectTitleAtIndex:(NSUInteger)index {
+    
+}
 
 - (void)setUpData
 {
