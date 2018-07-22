@@ -29,7 +29,14 @@
     self = [CHNavigationDropdownMenu buttonWithType:UIButtonTypeCustom];
     
     if (self) {
-        self.frame = navigationController.navigationBar.frame;
+        //self.frame = navigationController.navigationBar.frame;
+        
+        CGRect buttonFrame = self.frame;
+        
+        buttonFrame.origin = navigationController.navigationBar.frame.origin;
+        buttonFrame.size.height = CGRectGetHeight(navigationController.navigationBar.frame);
+        buttonFrame.size.width = 100.0;
+        self.frame = buttonFrame;
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.navigationController = navigationController;
@@ -64,7 +71,7 @@
     [self setImageEdgeInsets:UIEdgeInsetsMake(0.0, CGRectGetWidth(self.titleLabel.frame) + self.arrowPadding, 0.0, -CGRectGetWidth(self.titleLabel.frame))];
     
     CGRect menuHeaderViewFrame = self.menuHeaderView.frame;
-    menuHeaderViewFrame.size.width = CGRectGetWidth(self.navigationController.navigationBar.frame);
+    menuHeaderViewFrame.size.width = CGRectGetWidth(self.navigationController.navigationBar.frame) + 20;
     menuHeaderViewFrame.size.height = self.cellHeight;
     self.menuHeaderView.frame = menuHeaderViewFrame;
     

@@ -7,10 +7,63 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+
+
+#define kTransitionTime 0.2
+//填充模式枚举值
+typedef NS_ENUM(NSInteger,CHLayerVideoGravity){
+    CHLayerVideoGravityResizeAspect,
+    CHLayerVideoGravityResizeAspectFill,
+    CHLayerVideoGravityResize,
+};
+//播放状态枚举值
+typedef NS_ENUM(NSInteger,CHPlayerStatus){
+    CHPlayerStatusFailed,
+    CHPlayerStatusReadyToPlay,
+    CHPlayerStatusUnknown,
+    CHPlayerStatusBuffering,
+    CHPlayerStatusPlaying,
+    CHPlayerStatusStopped,
+};
+
 
 @interface CHPronVideoView : UIView
 
 
 @property (nonatomic, copy) NSString *urlVideo;
+
+//总时长
+@property (nonatomic,assign) CMTime totalTime;
+//当前时间
+@property (nonatomic,assign) CMTime currentTime;
+//资产AVURLAsset
+//@property (nonatomic,strong) AVURLAsset *anAsset;
+//播放器Playback Rate
+@property (nonatomic,assign) CGFloat rate;
+//播放状态
+@property (nonatomic,assign,readonly) CHPlayerStatus status;
+//videoGravity设置屏幕填充模式，（只写）
+@property (nonatomic,assign) CHLayerVideoGravity mode;
+//是否正在播放
+@property (nonatomic,assign,readonly) BOOL isPlaying;
+//是否全屏
+@property (nonatomic,assign,readonly) BOOL isFullScreen;
+//设置标题
+@property (nonatomic,copy) NSString *title;
+
+
+//与url初始化
+-(instancetype)initWithUrl:(NSString *)url;
+//将播放url放入资产中初始化播放器
+-(void)assetWithURL:(NSURL *)url;
+//公用同一个资产请使用此方法初始化
+-(instancetype)initWithAsset:(AVURLAsset *)asset;
+//播放
+-(void)play;
+//暂停
+-(void)pause;
+//停止 （移除当前视频播放下一个或者销毁视频，需调用Stop方法）
+-(void)stop;
 
 @end

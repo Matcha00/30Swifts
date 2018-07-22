@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *chTableview;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, strong) NSMutableArray *array;
+@property (nonatomic, copy) NSArray *classUrl; //
+@property (nonatomic, copy) NSString *bashUrl;
 
 @end
 
@@ -31,16 +33,13 @@
     
     self.page = 1;
     
-    CHNavigationDropdownMenu *test = [[CHNavigationDropdownMenu alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [self.view addSubview:test];
-    test.delegate = self;
-    test.dataSource = self;
+
 }
 
 #pragma mark - NavigationDropdownMenu DataSource
 
 - (NSArray<NSString *> *)titleArrayForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
-    return @[@"所有", @"大胸", @"翘臀", @"黑丝", @"美腿", @"清新", @"杂烩"];
+    return @[@"精选", @"当前最热", @"最近得分", @"10分钟以上", @"本月讨论", @"本月收藏", @"收藏最多",@"本月最热",@"上月最热",@"高清"];
 }
 
 - (UIImage *)arrowImageForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
@@ -54,10 +53,63 @@
 - (BOOL)keepCellSelectionForNavigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu {
     return NO;
 }
+
+
 #pragma mark - NavigationDropdownMenu Delegate
 
 - (void)navigationDropdownMenu:(CHNavigationDropdownMenu *)navigationDropdownMenu didSelectTitleAtIndex:(NSUInteger)index {
     
+    self.bashUrl = self.classUrl[index];
+    [self.chTableview.mj_header  beginRefreshing];
+}
+
+#pragma mark lazy property
+
+- (UINavigationItem *)navigationItem {
+    UINavigationItem *navigationItem = [super navigationItem];
+    if (navigationItem.titleView == nil) {
+        CHNavigationDropdownMenu *dropdownMenu = [[CHNavigationDropdownMenu alloc] initWithNavigationController:self.navigationController];
+        dropdownMenu.dataSource = self;
+        dropdownMenu.delegate = self;
+        navigationItem.titleView = dropdownMenu;
+    }
+    return navigationItem;
+}
+
+- (NSArray *)classUrl
+{
+    if (!_classUrl) {
+        _classUrl = @[@"http://91porn.com/video.php?category=rf&page=",
+                      @"http://91porn.com/v.php?category=hot&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=rp&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=long&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=md&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=tf&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=mf&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=top&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=top&m=-1&viewtype=basic&page=",
+                      @"http://91porn.com/v.php?category=hd&viewtype=basic&page="];
+    }
+    //精选 http://91porn.com/video.php?category=rf&page=2
+    // 当前最热 http://91porn.com/v.php?category=hot&viewtype=basic&page=2
+    // 最近得分 http://91porn.com/v.php?category=rp&viewtype=basic&page=2
+    // 10分钟以上 http://91porn.com/v.php?category=long&viewtype=basic&page=2
+    // 本月讨论 http://91porn.com/v.php?category=md&viewtype=basic&page=2
+    // 本月收藏 http://91porn.com/v.php?category=tf&viewtype=basic&page=4
+    // 收藏最多 http://91porn.com/v.php?category=mf&viewtype=basic&page=2
+    // 本月最热 http://91porn.com/v.php?category=top&viewtype=basic&page=2
+    // 上月最热 http://91porn.com/v.php?category=top&m=-1&viewtype=basic&page=3
+    // 高清 http://91porn.com/v.php?category=hd&viewtype=basic&page=2119
+    return _classUrl;
+}
+
+- (NSString *)bashUrl
+{
+    if (!_bashUrl) {
+        _bashUrl = @"http://91porn.com/video.php?category=rf&page=";
+    }
+    
+    return _bashUrl;
 }
 
 - (void)setUpData
@@ -74,7 +126,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         self.page++;
-        NSString *url91 = [NSString stringWithFormat:@"%@%lu",@"http://91porn.com/video.php?category=rf&page=",self.page];
+        NSString *url91 = [NSString stringWithFormat:@"%@%lu",self.bashUrl,self.page];
         
         
         
@@ -151,13 +203,13 @@
                 
                 
                 
-                self.array = [CHPronModel mj_objectArrayWithKeyValuesArray:modelArray];
-                if (_array) {
+                [self.array addObjectsFromArray:[CHPronModel mj_objectArrayWithKeyValuesArray:modelArray]];
+                
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.chTableview.mj_footer endRefreshing];
                         [_chTableview reloadData];
                     });
-                }
+                
                 
             } else {
                 self.page--;
@@ -177,7 +229,7 @@
     
     
     //[self.chTableview.mj_footer endRefreshing];
-    NSString *url91 = [NSString stringWithFormat:@"%@%lu",@"http://91porn.com/video.php?category=rf&page=",self.page];
+    NSString *url91 = [NSString stringWithFormat:@"%@%lu",self.bashUrl,self.page];
     
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -303,7 +355,9 @@
     
     CHVIdeoViewController *video = [[CHVIdeoViewController alloc]init];
     video.pron = _array[indexPath.row];
-    [self presentViewController:video animated:YES completion:nil];
+    //[self presentViewController:video animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:video animated:YES];
     
 }
 

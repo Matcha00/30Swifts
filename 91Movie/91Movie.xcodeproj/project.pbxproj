@@ -15,6 +15,9 @@
 		18042A822067A3D700A2DAC9 /* CHTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18042A802067A3D700A2DAC9 /* CHTableViewCell.xib */; };
 		18042A862067F2CC00A2DAC9 /* CHVIdeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18042A842067F2CC00A2DAC9 /* CHVIdeoViewController.m */; };
 		18042A872067F2CC00A2DAC9 /* CHVIdeoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18042A852067F2CC00A2DAC9 /* CHVIdeoViewController.xib */; };
+		182A8E3821036C17008DFDB2 /* CHVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3721036C17008DFDB2 /* CHVideoControlView.m */; };
+		182A8E3C210459AC008DFDB2 /* UIView+ZHNFirework.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3A210459AB008DFDB2 /* UIView+ZHNFirework.m */; };
+		18B7D7A92103660E008A043C /* CHVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D7A82103660E008A043C /* CHVideoButton.m */; };
 		18F0099220673FE900283282 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0099120673FE900283282 /* main.m */; };
 		18F0099520673FE900283282 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0099420673FE900283282 /* AppDelegate.m */; };
 		18F0099820673FE900283282 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0099720673FE900283282 /* ViewController.m */; };
@@ -60,6 +63,12 @@
 		18042A832067F2CC00A2DAC9 /* CHVIdeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHVIdeoViewController.h; sourceTree = "<group>"; };
 		18042A842067F2CC00A2DAC9 /* CHVIdeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHVIdeoViewController.m; sourceTree = "<group>"; };
 		18042A852067F2CC00A2DAC9 /* CHVIdeoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHVIdeoViewController.xib; sourceTree = "<group>"; };
+		182A8E3621036C17008DFDB2 /* CHVideoControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHVideoControlView.h; sourceTree = "<group>"; };
+		182A8E3721036C17008DFDB2 /* CHVideoControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHVideoControlView.m; sourceTree = "<group>"; };
+		182A8E3A210459AB008DFDB2 /* UIView+ZHNFirework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZHNFirework.m"; sourceTree = "<group>"; };
+		182A8E3B210459AB008DFDB2 /* UIView+ZHNFirework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZHNFirework.h"; sourceTree = "<group>"; };
+		18B7D7A72103660E008A043C /* CHVideoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHVideoButton.h; sourceTree = "<group>"; };
+		18B7D7A82103660E008A043C /* CHVideoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHVideoButton.m; sourceTree = "<group>"; };
 		18F0098D20673FE900283282 /* 91Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 91Movie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0099120673FE900283282 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18F0099320673FE900283282 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182A8E39210459AB008DFDB2 /* ZHNFirework */ = {
+			isa = PBXGroup;
+			children = (
+				182A8E3A210459AB008DFDB2 /* UIView+ZHNFirework.m */,
+				182A8E3B210459AB008DFDB2 /* UIView+ZHNFirework.h */,
+			);
+			path = ZHNFirework;
+			sourceTree = "<group>";
+		};
 		18F0098420673FE900283282 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +161,7 @@
 				18F0099720673FE900283282 /* ViewController.m */,
 				18F0099920673FE900283282 /* Main.storyboard */,
 				18F0099F20673FE900283282 /* Assets.xcassets */,
+				182A8E39210459AB008DFDB2 /* ZHNFirework */,
 				18F009A120673FE900283282 /* LaunchScreen.storyboard */,
 				18F009A420673FE900283282 /* Info.plist */,
 				18F0099C20673FE900283282 /* _1Movie.xcdatamodeld */,
@@ -161,6 +180,10 @@
 				18024BFA206F5E2400304F51 /* CHPronVideoView.m */,
 				7C8AF2D921018B14002D5D84 /* CHNavigationDropdownMenu.h */,
 				7C8AF2DA21018B14002D5D84 /* CHNavigationDropdownMenu.m */,
+				18B7D7A72103660E008A043C /* CHVideoButton.h */,
+				18B7D7A82103660E008A043C /* CHVideoButton.m */,
+				182A8E3621036C17008DFDB2 /* CHVideoControlView.h */,
+				182A8E3721036C17008DFDB2 /* CHVideoControlView.m */,
 			);
 			path = 91Movie;
 			sourceTree = "<group>";
@@ -290,7 +313,7 @@
 				TargetAttributes = {
 					18F0098C20673FE900283282 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = H4Y4W32V96;
+						DevelopmentTeam = 9UYJE5TN25;
 						ProvisioningStyle = Automatic;
 					};
 					18F009A820673FE900283282 = {
@@ -410,6 +433,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F0099E20673FE900283282 /* _1Movie.xcdatamodeld in Sources */,
+				18B7D7A92103660E008A043C /* CHVideoButton.m in Sources */,
+				182A8E3C210459AC008DFDB2 /* UIView+ZHNFirework.m in Sources */,
 				18042A7D2067A32B00A2DAC9 /* CHPronModel.m in Sources */,
 				18042A812067A3D700A2DAC9 /* CHTableViewCell.m in Sources */,
 				18042A862067F2CC00A2DAC9 /* CHVIdeoViewController.m in Sources */,
@@ -417,6 +442,7 @@
 				18F0099820673FE900283282 /* ViewController.m in Sources */,
 				18F0099520673FE900283282 /* AppDelegate.m in Sources */,
 				18042A7A2067846600A2DAC9 /* CHNetWorking.m in Sources */,
+				182A8E3821036C17008DFDB2 /* CHVideoControlView.m in Sources */,
 				7C8AF2DB21018B14002D5D84 /* CHNavigationDropdownMenu.m in Sources */,
 				18F0099220673FE900283282 /* main.m in Sources */,
 			);
@@ -568,7 +594,7 @@
 			baseConfigurationReference = FB48C0723747F8DE4C5C22CF /* Pods-91Movie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H4Y4W32V96;
+				DEVELOPMENT_TEAM = 9UYJE5TN25;
 				INFOPLIST_FILE = 91Movie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "matcha00.me.-1Movie";
@@ -581,7 +607,7 @@
 			baseConfigurationReference = DCC0BAE2474BBBA816FB0EEA /* Pods-91Movie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H4Y4W32V96;
+				DEVELOPMENT_TEAM = 9UYJE5TN25;
 				INFOPLIST_FILE = 91Movie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "matcha00.me.-1Movie";

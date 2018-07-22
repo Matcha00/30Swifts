@@ -12,10 +12,9 @@
 #import "CHNetWorking.h"
 #import <TFHpple.h>
 #import "CHPronVideoView.h"
+
 @interface CHVIdeoViewController ()
-@property (strong, nonatomic)AVPlayer *myPlayer;//播放器
-@property (strong, nonatomic)AVPlayerItem *item;//播放单元
-@property (strong, nonatomic)AVPlayerLayer *playerLayer;//播放界面（layer）
+@property (nonatomic, strong) CHPronVideoView *video;
 @property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSString *url;
 @end
@@ -24,12 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    //NSLog(@"%@",self.pron.showUrl);
-    //*[@id="vid_html5_api"]/source
     
     
+    self.view.backgroundColor = [UIColor blackColor];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         [[CHNetWorking shareManager]getUrl:self.pron.showUrl withBlock:^(NSData *data, NSError *error) {
@@ -53,9 +49,10 @@
             if (hhhhh) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    CHPronVideoView *pronVideo = [[CHPronVideoView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, 200)];
-                    pronVideo.urlVideo = hhhhh;
-                    [self.view addSubview:pronVideo];
+                    self.video = [[CHPronVideoView alloc]initWithFrame:CGRectMake(0, self.view.center.y - 44, [UIScreen mainScreen].bounds.size.width, 200)];
+                    self.video.urlVideo = hhhhh;
+                    NSLog(@"hhhhhhh%@", hhhhh);
+                    [self.view addSubview:self.video];
                     
                    
                     
@@ -64,25 +61,7 @@
             
           
             
-//            if (hhhhh) {
-//
-//                NSURL *url = [NSURL URLWithString:hhhhh];
-//                NSMutableDictionary * headers = [NSMutableDictionary dictionary];
-//                [headers setObject:@"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"forKey:@"User-Agent"];
-//                [headers setObject:@"zh-CN,zh;q=0.8,en;q=0.6" forKey:@"Accept-Language"];
-//
-//                AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
-//
-//
-//                _item = [[AVPlayerItem alloc]initWithAsset:urlAsset];
-//                _myPlayer = [[AVPlayer alloc]initWithPlayerItem:_item];
-//                _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_myPlayer];
-//                _playerLayer.frame = CGRectMake(0, 20, self.view.frame.size.width, 300);
-//                _playerLayer.backgroundColor = [UIColor yellowColor].CGColor;
-//                [self.view.layer addSublayer:_playerLayer];
-//                [_myPlayer play];
-            
-           // }
+
             
             
             
@@ -116,7 +95,7 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+   // [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //- (void)viewWillAppear:(BOOL)animated
@@ -132,5 +111,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)dealloc
+{
+    [self.video stop] ;
+}
 
 @end
