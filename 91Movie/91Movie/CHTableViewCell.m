@@ -19,6 +19,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.layer.cornerRadius = 10;
+    self.layer.masksToBounds = YES;
+    
+    
+//    self.layer.masksToBounds = YES;
+    self.layer.shadowPath   =    CGPathCreateWithRect(self.bounds, NULL);
+    self.layer.shadowColor = [UIColor redColor].CGColor;
+    self.layer.shadowOpacity = 0.8;
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    
+    
+   
     // Initialization code
 }
 
@@ -28,6 +41,14 @@
     // Configure the view for the selected state
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    frame.origin.x += 20;
+    frame.origin.y += 20;
+    frame.size.width -= 40;
+    frame.size.height -= 20;
+    [super setFrame:frame];
+}
 
 - (void)setPron:(CHPronModel *)pron
 {
